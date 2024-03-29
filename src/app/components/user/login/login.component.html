@@ -1,0 +1,261 @@
+<!-- <p>login works!</p> -->
+<div [ngClass]="getContainerClass()">
+  <div class="forms-container">
+    <div class="signin-signup">
+      <form action="" class="sign-in-form" [formGroup]="loginForm">
+        <h2 class="title">Sign in</h2>
+        <div class="input-field">
+          <i class="fa-solid fa-user"></i>
+          <mat-form-field
+            class="example-form-field0 custom-text-field"
+            id="text-id"
+          >
+            <mat-label>Username</mat-label>
+            <input
+              matInput
+              type="text"
+              formControlName="username"
+              name="value"
+            />
+            <mat-error *ngIf="loginForm.get('username')?.hasError('required')"
+              >username is required</mat-error
+            >
+
+            @if (loginForm.get('username')?.value) {
+            <button
+              matSuffix
+              mat-icon-button
+              aria-label="Clear"
+              (click)="loginForm.get('username')?.setValue('')"
+            >
+              <mat-icon>close</mat-icon>
+            </button>
+            }
+          </mat-form-field>
+        </div>
+        <div class="input-field">
+          <mat-form-field>
+            <mat-label>Enter your password</mat-label>
+            <input
+              matInput
+              [type]="hide ? 'password' : 'text'"
+              formControlName="password"
+            />
+            <mat-error *ngIf="loginForm.get('password')?.hasError('required')"
+              >password is required</mat-error
+            >
+            <button
+              mat-icon-button
+              matSuffix
+              (click)="hide = !hide"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide"
+            >
+              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+        <button
+          mat-fab
+          extended
+          color="primary"
+          (click)="loginSubmit()"
+          class="btn solid"
+        >
+          <!-- <mat-icon>account_balance</mat-icon> -->
+          Login
+        </button>
+      </form>
+      <!-- --------Signup form----------- -->
+      <form action="" [formGroup]="signupForm" class="sign-up-form">
+        <h2 class="title">Sign Up</h2>
+        <div class="input-field">
+          <mat-form-field
+            style="margin-bottom: 40px"
+            class="example-form-field0 custom-text-field"
+            id="text-id"
+          >
+            <mat-label>Userid</mat-label>
+            <input matInput formControlName="userid" type="text" name="value" />
+            <mat-error *ngIf="signupForm.get('userid')?.hasError('required')"
+              >Userid is <strong>required</strong></mat-error
+            >
+            @if (signupForm.get('userid')?.value) {
+            <button
+              matSuffix
+              mat-icon-button
+              aria-label="Clear"
+              (click)="signupForm.get('userid')?.setValue('')"
+            >
+              <mat-icon>close</mat-icon>
+            </button>
+            }
+          </mat-form-field>
+        </div>
+        <div class="input-field">
+          <mat-form-field
+            style="margin-bottom: 40px"
+            class="example-form-field0 custom-text-field"
+            id="text-id"
+          >
+            <mat-label>Username</mat-label>
+            <input
+              matInput
+              formControlName="username"
+              type="text"
+              name="value"
+            />
+            <mat-error *ngIf="signupForm.get('username')?.hasError('required')"
+              >Username is <strong>required</strong></mat-error
+            >
+            @if (signupForm.get('username')?.value) {
+            <button
+              matSuffix
+              mat-icon-button
+              aria-label="Clear"
+              (click)="signupForm.get('username')?.setValue('')"
+            >
+              <mat-icon>close</mat-icon>
+            </button>
+            }
+          </mat-form-field>
+        </div>
+        <div class="input-field">
+          <mat-form-field class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input
+              type="email"
+              matInput
+              formControlName="emailid"
+              placeholder="Ex. pat@example.com"
+            />
+            <mat-error *ngIf="signupForm.get('emailid')?.hasError('required')"
+              >Email is <strong>required</strong></mat-error
+            >
+            @if(signupForm.get('emailid')?.value){
+            <button
+              matSuffix
+              mat-icon-button
+              aria-label="Clear"
+              (click)="signupForm.get('emailid')?.setValue('')"
+            >
+              <mat-icon>close</mat-icon>
+            </button>
+            }
+          </mat-form-field>
+        </div>
+        <div class="input-field">
+          <mat-form-field>
+            <mat-label>Enter your password</mat-label>
+            <input
+              matInput
+              [type]="hide ? 'password' : 'text'"
+              formControlName="password"
+            />
+            <mat-error *ngIf="signupForm.get('password')?.hasError('required')"
+              >password is <strong>required</strong></mat-error
+            >
+            <button
+              mat-icon-button
+              matSuffix
+              (click)="hide = !hide"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide"
+            >
+              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+        <div class="input-field">
+          <mat-form-field
+            style="margin-bottom: 40px"
+            class="example-form-field0 custom-text-field"
+            id="text-id"
+          >
+            <mat-label>Role</mat-label>
+            <input matInput formControlName="role" type="text" name="value" />
+            <mat-error *ngIf="signupForm.get('role')?.hasError('required')"
+              >Role is <strong>required</strong></mat-error
+            >
+            @if (signupForm.get('role')?.value) {
+            <button
+              matSuffix
+              mat-icon-button
+              aria-label="Clear"
+              (click)="signupForm.get('role')?.setValue('')"
+            >
+              <mat-icon>close</mat-icon>
+            </button>
+            }
+          </mat-form-field>
+        </div>
+        <div class="input-field">
+          <mat-form-field
+            style="margin-bottom: 40px"
+            class="example-form-field0 custom-text-field"
+            id="text-id"
+          >
+            <mat-label>Contact No</mat-label>
+            <input
+              matInput
+              formControlName="contactno"
+              type="text"
+              name="value"
+            />
+            <mat-error *ngIf="signupForm.get('contactno')?.hasError('required')"
+              >Contact is <strong>required</strong></mat-error
+            >
+            @if (signupForm.get('contactno')?.value) {
+            <button
+              matSuffix
+              mat-icon-button
+              aria-label="Clear"
+              (click)="signupForm.get('contactno')?.setValue('')"
+            >
+              <mat-icon>close</mat-icon>
+            </button>
+            }
+          </mat-form-field>
+        </div>
+        <button mat-fab extended color="primary" class="btn">
+          <!-- <mat-icon>account_balance</mat-icon> -->
+          Sign Up
+        </button>
+      </form>
+    </div>
+  </div>
+  <div class="panels-container">
+    <div class="panel left-panel">
+      <div class="content">
+        <h3>New here ?</h3>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis, ex
+          ratione. Aliquid!
+        </p>
+        <button class="btn transparent" (click)="toggleMode()" id="sign-up-btn">
+          Sign up
+        </button>
+      </div>
+      <img
+        src="../../../../assets/image/undraw_maker_launch_re_rq81.svg"
+        class="image"
+      />
+    </div>
+    <div class="panel right-panel">
+      <div class="content">
+        <h3>One of us ?</h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
+          laboriosam ad deleniti.
+        </p>
+        <button class="btn transparent" (click)="toggleMode()" id="sign-in-btn">
+          Sign in
+        </button>
+      </div>
+      <img
+        src="../../../../assets/image/undraw_secure_login_pdn4 (1).svg"
+        class="image"
+      />
+    </div>
+  </div>
+</div>
